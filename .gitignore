@@ -1,0 +1,136 @@
+# Databricks
+.databricks/
+*.dbx
+.dbx/
+_databricks_bundle/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Data Files (exclude large data files)
+*.csv
+*.parquet
+*.json
+*.xml
+*.avro
+data/raw/
+data/processed/
+*.db
+*.sqlite
+
+# Credentials
+credentials.json
+*.pem
+*.key
+*.crt
+service-account.json
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary Files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.#*
+
+# Delta Lake
+_delta_log/
+_spark_metadata/
+_SUCCESS
+_committed_*
+_started_*
+
+# Spark
+metastore_db/
+derby.log
+spark-warehouse/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+.cache
+nosetests.xml
+coverage.xml
+
+# Documentation
+docs/_build/
+site/
+
+# Package files
+*.tar.gz
+*.zip
+*.rar
+
+# Backup files
+*.bak
+*.backup
+
+# Configuration files with sensitive data
+*config.local.*
+*secrets.*
+
+# Exclude checkpoint directories
+checkpoints/
+_checkpoints/
