@@ -619,7 +619,7 @@ For questions, issues, or feature requests:
 
 - **Issues**: [GitHub Issues](https://github.com/your-org/shoplive/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-org/shoplive/discussions)
-- **Email**: a.vengatesh123@gmail.coom
+- **Email**: a.vengatesh123@gmail.com
 
 ---
 
