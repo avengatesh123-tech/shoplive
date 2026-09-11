@@ -28,13 +28,15 @@
 
 ### Key Features
 
-✨ **Real-time & Batch Processing**: Support for both streaming and batch data ingestion  
-🏗️ **Medallion Architecture**: Bronze, Silver, and Gold layers for data quality and governance  
-🔄 **Auto Loader Integration**: Automated, scalable data ingestion from cloud storage  
-📊 **Advanced Analytics**: Customer segmentation, product performance, and sales insights  
-🎯 **RFM Analysis**: Customer segmentation based on Recency, Frequency, and Monetary value  
-⚡ **Delta Lake**: ACID transactions, time travel, and efficient data versioning  
-📈 **Incremental Processing**: Optimized for cost-effective, incremental data processing  
+| Feature | Description |
+|---|---|
+| ✨ Real-time & Batch Processing | Support for both streaming and batch data ingestion |
+| 🏗️ Medallion Architecture | Bronze, Silver, and Gold layers for data quality and governance |
+| 🔄 Auto Loader Integration | Automated, scalable data ingestion from cloud storage |
+| 📊 Advanced Analytics | Customer segmentation, product performance, and sales insights |
+| 🎯 RFM Analysis | Customer segmentation based on Recency, Frequency, and Monetary value |
+| ⚡ Delta Lake | ACID transactions, time travel, and efficient data versioning |
+| 📈 Incremental Processing | Optimized for cost-effective, incremental data processing |
 
 ---
 
@@ -44,59 +46,65 @@
 
 The platform follows the medallion architecture pattern with three distinct layers:
 
-\`\`\`
+```
 ┌─────────────────────────────────────────────────────────────────┐
-│                          DATA SOURCES                           │
-│                  (CSV Files, Streaming Events)                  │
+│                          DATA SOURCES                            │
+│                  (CSV Files, Streaming Events)                   │
 └─────────────────────────────────────────────────────────────────┘
-                                  ↓
+                                  │
+                                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  🥉 BRONZE LAYER (shoplive.bronze)                              │
-│  • Raw data ingestion via Auto Loader                           │
-│  • Schema inference and validation                              │
-│  • Minimal transformations                                      │
-│  Tables: customers, orders, products, events                    │
+│  🥉 BRONZE LAYER (shoplive.bronze)                                │
+│  • Raw data ingestion via Auto Loader                             │
+│  • Schema inference and validation                                │
+│  • Minimal transformations                                        │
+│  Tables: customers, orders, products, events                      │
 └─────────────────────────────────────────────────────────────────┘
-                                  ↓
+                                  │
+                                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  🥈 SILVER LAYER (shoplive.silver)                              │
-│  • Data cleansing and standardization                           │
-│  • Deduplication and quality checks                             │
-│  • Business logic application                                   │
-│  Tables: customers, orders, products, events                    │
+│  🥈 SILVER LAYER (shoplive.silver)                                │
+│  • Data cleansing and standardization                             │
+│  • Deduplication and quality checks                               │
+│  • Business logic application                                     │
+│  Tables: customers, orders, products, events                      │
 └─────────────────────────────────────────────────────────────────┘
-                                  ↓
+                                  │
+                                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  🥇 GOLD LAYER (shoplive.gold)                                  │
-│  • Aggregated business metrics                                  │
-│  • Customer segmentation (RFM)                                  │
-│  • Product and category performance                             │
-│  • Analytics-ready data                                         │
-│  Tables: customer_segments, product_performance,                │
-│          category_performance, daily_category_sales, etc.       │
+│  🥇 GOLD LAYER (shoplive.gold)                                    │
+│  • Aggregated business metrics                                    │
+│  • Customer segmentation (RFM)                                    │
+│  • Product and category performance                               │
+│  • Analytics-ready data                                           │
+│  Tables: customer_segments, product_performance,                  │
+│          category_performance, daily_category_sales, etc.         │
 └─────────────────────────────────────────────────────────────────┘
-                                  ↓
+                                  │
+                                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                    ANALYTICS & BI TOOLS                         │
-│              (Dashboards, Reports, ML Models)                   │
+│                    ANALYTICS & BI TOOLS                          │
+│              (Dashboards, Reports, ML Models)                    │
 └─────────────────────────────────────────────────────────────────┘
-\`\`\`
+```
 
 ### Technology Stack
 
-- **Platform**: Databricks on AWS
-- **Processing Engine**: Apache Spark (PySpark)
-- **Storage Layer**: Delta Lake
-- **Orchestration**: Databricks Workflows / Jobs
-- **Data Ingestion**: Auto Loader (CloudFiles)
-- **Languages**: Python, SQL
-- **Unity Catalog**: Unified governance and metadata management
+| Layer | Technology |
+|---|---|
+| Platform | Databricks on AWS |
+| Processing Engine | Apache Spark (PySpark) |
+| Storage Layer | Delta Lake |
+| Orchestration | Databricks Workflows / Jobs |
+| Data Ingestion | Auto Loader (CloudFiles) |
+| Languages | Python, SQL |
+| Governance | Unity Catalog |
 
 ---
 
 ## 📁 Project Structure
 
-\`\`\`
+```
 shoplive/
 ├── README.md                          # This file
 ├── data/                              # Data generation and ingestion
@@ -133,7 +141,7 @@ shoplive/
 │           └── order_status_summary.py    # Order status aggregations
 │
 └── .git/                              # Git version control
-\`\`\`
+```
 
 ---
 
@@ -141,11 +149,11 @@ shoplive/
 
 ### Bronze Layer Tables
 
-#### \`shoplive.bronze.customers\`
+#### `shoplive.bronze.customers`
 Raw customer data ingested from source systems.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|---|---|---|
 | customer_id | STRING | Unique customer identifier |
 | first_name | STRING | Customer first name |
 | last_name | STRING | Customer last name |
@@ -153,11 +161,11 @@ Raw customer data ingested from source systems.
 | registration_date | DATE | Account registration date |
 | country | STRING | Customer country |
 
-#### \`shoplive.bronze.orders\`
+#### `shoplive.bronze.orders`
 Raw order transactions.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|---|---|---|
 | order_id | STRING | Unique order identifier |
 | customer_id | STRING | Customer identifier (FK) |
 | product_id | STRING | Product identifier (FK) |
@@ -166,22 +174,22 @@ Raw order transactions.
 | unit_price | DECIMAL | Price per unit |
 | status | STRING | Order status |
 
-#### \`shoplive.bronze.products\`
+#### `shoplive.bronze.products`
 Raw product catalog data.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|---|---|---|
 | product_id | STRING | Unique product identifier |
 | product_name | STRING | Product name |
 | category | STRING | Product category |
 | price | DECIMAL | Product price |
 | stock_quantity | INTEGER | Available stock |
 
-#### \`shoplive.bronze.events\`
+#### `shoplive.bronze.events`
 Raw event tracking data (page views, clicks, etc.).
 
 | Column | Type | Description |
-|--------|------|-------------|
+|---|---|---|
 | event_id | STRING | Unique event identifier |
 | customer_id | STRING | Customer identifier |
 | event_type | STRING | Type of event |
@@ -199,11 +207,11 @@ Cleansed and standardized versions of Bronze tables with:
 
 ### Gold Layer Tables
 
-#### \`shoplive.gold.customer_segments\`
+#### `shoplive.gold.customer_segments`
 RFM-based customer segmentation.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|---|---|---|
 | customer_id | STRING | Customer identifier |
 | recency | INTEGER | Days since last purchase |
 | frequency | INTEGER | Total number of orders |
@@ -211,17 +219,20 @@ RFM-based customer segmentation.
 | segment | STRING | Customer segment (VIP, Loyal, At Risk, Churned, New) |
 
 **Segmentation Rules:**
-- **VIP**: Recency ≤ 30 days, Frequency ≥ 10, Monetary ≥ $50,000
-- **Loyal**: Recency ≤ 30 days, Frequency ≥ 5, Monetary ≥ $10,000
-- **At Risk**: 30 < Recency ≤ 90 days, Frequency ≥ 3
-- **Churned**: Recency > 90 days
-- **New**: All others
 
-#### \`shoplive.gold.product_performance\`
+| Segment | Recency | Frequency | Monetary |
+|---|---|---|---|
+| VIP | ≤ 30 days | ≥ 10 | ≥ $50,000 |
+| Loyal | ≤ 30 days | ≥ 5 | ≥ $10,000 |
+| At Risk | 30–90 days | ≥ 3 | — |
+| Churned | > 90 days | — | — |
+| New | All others | — | — |
+
+#### `shoplive.gold.product_performance`
 Product-level performance metrics.
 
 | Column | Type | Description |
-|--------|------|-------------|
+|---|---|---|
 | product_id | STRING | Product identifier |
 | product_name | STRING | Product name |
 | category | STRING | Product category |
@@ -230,13 +241,13 @@ Product-level performance metrics.
 | total_revenue | DECIMAL | Total revenue generated |
 | avg_order_value | DECIMAL | Average order value |
 
-#### \`shoplive.gold.category_performance\`
+#### `shoplive.gold.category_performance`
 Category-level performance metrics.
 
-#### \`shoplive.gold.daily_category_sales\`
+#### `shoplive.gold.daily_category_sales`
 Daily sales trends by category.
 
-#### \`shoplive.gold.order_status_summary\`
+#### `shoplive.gold.order_status_summary`
 Order status distribution and metrics.
 
 ---
@@ -256,9 +267,9 @@ Order status distribution and metrics.
 
 ### Permissions
 
-- \`CREATE TABLE\` on the \`shoplive\` catalog
-- \`USE CATALOG\` and \`USE SCHEMA\` permissions
-- Read/Write access to Unity Catalog volumes: \`/Volumes/shoplive/core/raw/\`
+- `CREATE TABLE` on the `shoplive` catalog
+- `USE CATALOG` and `USE SCHEMA` permissions
+- Read/Write access to Unity Catalog volumes: `/Volumes/shoplive/core/raw/`
 - Execute permissions on notebooks and pipelines
 
 ---
@@ -267,21 +278,22 @@ Order status distribution and metrics.
 
 ### Step 1: Clone the Repository
 
-\`\`\`bash
+```bash
 # If using Databricks Repos
 # Navigate to Repos in your Databricks workspace
 # Click "Add Repo" and provide the Git repository URL
-\`\`\`
+```
 
 Or manually upload the project to your Databricks workspace:
-\`\`\`bash
+
+```bash
 # Use Databricks CLI
 databricks workspace import_dir ./shoplive /Workspace/db_project/shoplive
-\`\`\`
+```
 
 ### Step 2: Create Unity Catalog Resources
 
-\`\`\`sql
+```sql
 -- Create catalog
 CREATE CATALOG IF NOT EXISTS shoplive;
 
@@ -301,13 +313,13 @@ CREATE SCHEMA IF NOT EXISTS shoplive.core
 -- Create volume for raw data
 CREATE VOLUME IF NOT EXISTS shoplive.core.raw
   COMMENT 'Raw data storage for Auto Loader ingestion';
-\`\`\`
+```
 
 ### Step 3: Configure Data Generation
 
-1. Open \`data/batch_data/batch_data_generator.ipynb\`
+1. Open `data/batch_data/batch_data_generator.ipynb`
 2. Run all cells to generate sample batch data
-3. Open \`data/stream/stream_data.ipynb\`
+3. Open `data/stream/stream_data.ipynb`
 4. Configure streaming data generation parameters
 5. Run to start generating streaming events
 
@@ -316,40 +328,40 @@ CREATE VOLUME IF NOT EXISTS shoplive.core.raw
 Create a Databricks pipeline for each layer:
 
 #### Bronze Pipeline
-\`\`\`python
-# Configuration
-Pipeline Name: ShopLive Bronze Ingestion
-Notebook Path: /db_project/shoplive/spark/bronze.ipynb
-Target: shoplive.bronze
-Storage Location: dbfs:/pipelines/shoplive/bronze
-Pipeline Mode: Triggered or Continuous
-\`\`\`
+
+```
+Pipeline Name:     ShopLive Bronze Ingestion
+Notebook Path:     /db_project/shoplive/spark/bronze.ipynb
+Target:            shoplive.bronze
+Storage Location:  dbfs:/pipelines/shoplive/bronze
+Pipeline Mode:     Triggered or Continuous
+```
 
 #### Silver Pipeline
-\`\`\`python
-# Configuration
-Pipeline Name: ShopLive Silver Cleansing
-Notebook Path: /db_project/shoplive/spark/silver.ipynb
-Target: shoplive.silver
-Storage Location: dbfs:/pipelines/shoplive/silver
-Pipeline Mode: Triggered
-\`\`\`
+
+```
+Pipeline Name:     ShopLive Silver Cleansing
+Notebook Path:     /db_project/shoplive/spark/silver.ipynb
+Target:            shoplive.silver
+Storage Location:  dbfs:/pipelines/shoplive/silver
+Pipeline Mode:     Triggered
+```
 
 #### Gold Pipeline
-\`\`\`python
-# Configuration
-Pipeline Name: ShopLive Gold Analytics
-Notebook Path: /db_project/shoplive/spark/gold.ipynb
-Target: shoplive.gold
-Storage Location: dbfs:/pipelines/shoplive/gold
-Pipeline Mode: Triggered
-\`\`\`
+
+```
+Pipeline Name:     ShopLive Gold Analytics
+Notebook Path:     /db_project/shoplive/spark/gold.ipynb
+Target:            shoplive.gold
+Storage Location:  dbfs:/pipelines/shoplive/gold
+Pipeline Mode:     Triggered
+```
 
 ### Step 5: Schedule Pipeline Execution
 
 Create a Databricks Job to orchestrate the pipelines:
 
-\`\`\`yaml
+```yaml
 Job Name: ShopLive ETL Pipeline
 Tasks:
   - Task 1: Bronze Pipeline (Depends on: None)
@@ -358,7 +370,7 @@ Tasks:
 Schedule: Daily at 2:00 AM UTC
 Retry Policy: 3 retries with 5-minute intervals
 Notifications: Email on failure
-\`\`\`
+```
 
 ---
 
@@ -367,41 +379,44 @@ Notifications: Email on failure
 ### Running Individual Pipelines
 
 #### Bronze Layer (Data Ingestion)
-\`\`\`python
+
+```python
 # Open spark/bronze.ipynb
 # This notebook ingests raw data from /Volumes/shoplive/core/raw/
 # Auto Loader automatically detects new files and processes incrementally
-\`\`\`
+```
 
 #### Silver Layer (Data Cleansing)
-\`\`\`python
+
+```python
 # Open spark/silver.ipynb
 # This notebook cleanses and validates data from bronze tables
 # Applies business rules and data quality checks
-\`\`\`
+```
 
 #### Gold Layer (Analytics)
-\`\`\`python
+
+```python
 # Open spark/gold.ipynb
 # This notebook creates aggregated analytics tables
 # Generates customer segments, product performance metrics, etc.
-\`\`\`
+```
 
 ### Querying Analytics Tables
 
-\`\`\`sql
+```sql
 -- Customer Segmentation
-SELECT 
+SELECT
   segment,
-  COUNT(*) as customer_count,
-  ROUND(AVG(monetary), 2) as avg_lifetime_value,
-  ROUND(AVG(frequency), 2) as avg_order_frequency
+  COUNT(*)              AS customer_count,
+  ROUND(AVG(monetary), 2)  AS avg_lifetime_value,
+  ROUND(AVG(frequency), 2) AS avg_order_frequency
 FROM shoplive.gold.customer_segments
 GROUP BY segment
 ORDER BY avg_lifetime_value DESC;
 
 -- Top Performing Products
-SELECT 
+SELECT
   product_name,
   category,
   total_revenue,
@@ -412,7 +427,7 @@ ORDER BY total_revenue DESC
 LIMIT 10;
 
 -- Daily Sales Trend
-SELECT 
+SELECT
   sale_date,
   category,
   total_sales,
@@ -420,7 +435,7 @@ SELECT
 FROM shoplive.gold.daily_category_sales
 WHERE sale_date >= CURRENT_DATE - INTERVAL 30 DAYS
 ORDER BY sale_date DESC, total_sales DESC;
-\`\`\`
+```
 
 ---
 
@@ -437,10 +452,10 @@ ORDER BY sale_date DESC, total_sales DESC;
 - **Streaming Support**: Real-time data ingestion
 
 **Transformation Files**:
-- \`bronze/customers.py\`: Ingests customer CSV files
-- \`bronze/orders.py\`: Ingests order transaction files
-- \`bronze/products.py\`: Ingests product catalog files
-- \`bronze/events.py\`: Ingests event tracking data
+- `bronze/customers.py` — Ingests customer CSV files
+- `bronze/orders.py` — Ingests order transaction files
+- `bronze/products.py` — Ingests product catalog files
+- `bronze/events.py` — Ingests event tracking data
 
 ### Silver Layer
 
@@ -453,10 +468,10 @@ ORDER BY sale_date DESC, total_sales DESC;
 - **Referential Integrity**: Validate foreign key relationships
 
 **Transformation Files**:
-- \`silver/customers.py\`: Customer data cleansing and enrichment
-- \`silver/orders.py\`: Order data validation and standardization
-- \`silver/products.py\`: Product data quality checks
-- \`silver/events.py\`: Event data cleansing
+- `silver/customers.py` — Customer data cleansing and enrichment
+- `silver/orders.py` — Order data validation and standardization
+- `silver/products.py` — Product data quality checks
+- `silver/events.py` — Event data cleansing
 
 ### Gold Layer
 
@@ -469,11 +484,11 @@ ORDER BY sale_date DESC, total_sales DESC;
 - **Materialized Views**: Pre-aggregated for fast query performance
 
 **Transformation Files**:
-- \`gold/customer_segments.py\`: RFM-based customer segmentation
-- \`gold/product_performance.py\`: Product-level KPIs
-- \`gold/category_performance.py\`: Category-level metrics
-- \`gold/daily_category_sales.py\`: Time-series sales data
-- \`gold/order_status_summary.py\`: Order fulfillment metrics
+- `gold/customer_segments.py` — RFM-based customer segmentation
+- `gold/product_performance.py` — Product-level KPIs
+- `gold/category_performance.py` — Category-level metrics
+- `gold/daily_category_sales.py` — Time-series sales data
+- `gold/order_status_summary.py` — Order fulfillment metrics
 
 ---
 
@@ -488,11 +503,14 @@ The platform implements RFM (Recency, Frequency, Monetary) analysis to segment c
 - **Monetary**: Total customer lifetime value
 
 **Use Cases**:
-- **VIP Customers**: Target with exclusive offers and premium support
-- **Loyal Customers**: Reward with loyalty programs
-- **At Risk**: Re-engagement campaigns to prevent churn
-- **Churned**: Win-back campaigns and special offers
-- **New**: Onboarding and welcome campaigns
+
+| Segment | Action |
+|---|---|
+| VIP Customers | Target with exclusive offers and premium support |
+| Loyal Customers | Reward with loyalty programs |
+| At Risk | Re-engagement campaigns to prevent churn |
+| Churned | Win-back campaigns and special offers |
+| New | Onboarding and welcome campaigns |
 
 ### Product Performance
 
@@ -518,11 +536,12 @@ Analyze category-level trends:
 ### Best Practices Implemented
 
 1. **Delta Lake Optimization**
-   \`\`\`sql
+
+   ```sql
    -- Run OPTIMIZE regularly on frequently queried tables
    OPTIMIZE shoplive.gold.customer_segments;
    OPTIMIZE shoplive.gold.product_performance ZORDER BY (category, product_id);
-   \`\`\`
+   ```
 
 2. **Auto Loader Checkpointing**
    - Tracks processed files to avoid reprocessing
@@ -533,11 +552,12 @@ Analyze category-level trends:
    - Reduces compute costs and processing time
 
 4. **Partitioning Strategy**
-   \`\`\`sql
+
+   ```sql
    -- Partition large tables by date for efficient queries
    CREATE TABLE shoplive.silver.orders
    PARTITIONED BY (order_date)
-   \`\`\`
+   ```
 
 5. **Caching Strategy**
    - Cache frequently accessed dimension tables
@@ -558,17 +578,23 @@ Contributions are welcome! Please follow these guidelines:
 
 1. **Fork the repository**
 2. **Create a feature branch**
-   \`\`\`bash
+
+   ```bash
    git checkout -b feature/your-feature-name
-   \`\`\`
+   ```
+
 3. **Commit your changes**
-   \`\`\`bash
+
+   ```bash
    git commit -m "Add: description of your changes"
-   \`\`\`
+   ```
+
 4. **Push to the branch**
-   \`\`\`bash
+
+   ```bash
    git push origin feature/your-feature-name
-   \`\`\`
+   ```
+
 5. **Open a Pull Request**
 
 ### Code Standards
@@ -583,7 +609,7 @@ Contributions are welcome! Please follow these guidelines:
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -616,8 +642,8 @@ For questions, issues, or feature requests:
 
 ---
 
-**Last Updated**: 2024  
-**Version**: 1.0.0  
+**Last Updated**: 2024
+**Version**: 1.0.0
 **Databricks Runtime**: 14.3 LTS+
 
 ---
