@@ -619,7 +619,7 @@ For questions, issues, or feature requests:
 
 - **Issues**: [GitHub Issues](https://github.com/your-org/shoplive/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-org/shoplive/discussions)
-- **Email**: your-email@example.com
+- **Email**: a.vengatesh123@gmail.coom
 
 ---
 
@@ -640,12 +640,3 @@ For questions, issues, or feature requests:
 - [Auto Loader Guide](https://docs.databricks.com/ingestion/auto-loader/)
 - [Medallion Architecture Best Practices](https://www.databricks.com/glossary/medallion-architecture)
 
----
-
-**Last Updated**: 2024
-**Version**: 1.0.0
-**Databricks Runtime**: 14.3 LTS+
-
----
-
-*Built with ❤️ on Databricks*
